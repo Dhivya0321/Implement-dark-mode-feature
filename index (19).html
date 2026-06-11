@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dark Mode Toggle</title>
+
+<style>
+:root{
+    --bg-color:#ffffff;
+    --text-color:#222222;
+    --card-bg:#f4f4f4;
+    --button-bg:#2563eb;
+    --button-text:#ffffff;
+}
+
+body.dark-mode{
+    --bg-color:#121212;
+    --text-color:#ffffff;
+    --card-bg:#1e1e1e;
+    --button-bg:#3b82f6;
+    --button-text:#ffffff;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+    transition:0.3s;
+}
+
+body{
+    background:var(--bg-color);
+    color:var(--text-color);
+    min-height:100vh;
+    padding:40px;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+}
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.toggle-btn{
+    border:none;
+    background:var(--button-bg);
+    color:var(--button-text);
+    padding:12px 20px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.card{
+    background:var(--card-bg);
+    padding:25px;
+    border-radius:15px;
+    margin-bottom:20px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+.card h2{
+    margin-bottom:10px;
+}
+
+.card p{
+    line-height:1.6;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>Dark Mode Demo</h1>
+        <button class="toggle-btn" onclick="toggleDarkMode()">
+            🌙 Toggle Dark Mode
+        </button>
+    </div>
+
+    <div class="card">
+        <h2>Dashboard Card</h2>
+        <p>
+            This card automatically changes its colors when dark mode is enabled.
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>User Profile</h2>
+        <p>
+            Dark mode improves readability and reduces eye strain in low-light environments.
+        </p>
+    </div>
+
+</div>
+
+<script>
+function toggleDarkMode() {
+    document.body.classList.toggle("dark-mode");
+
+    if(document.body.classList.contains("dark-mode")){
+        localStorage.setItem("theme", "dark");
+    } else {
+        localStorage.setItem("theme", "light");
+    }
+}
+
+// Load saved theme
+if(localStorage.getItem("theme") === "dark"){
+    document.body.classList.add("dark-mode");
+}
+</script>
+
+</body>
+</html>
